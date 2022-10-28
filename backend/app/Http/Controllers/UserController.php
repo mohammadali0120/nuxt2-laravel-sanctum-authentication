@@ -83,40 +83,11 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-
-
-
-        // $user->tokens()->where('tokenTableId', $request->token)->delete();
-
-
-
-
-        // return [
-        //     'message' => "User with id of $request->id has been logged out"
-        // ];
-
-
-
-        // $request->user()->tokens()->delete();
-
         $user->tokens()->delete();
 
         return [
             'message' => "User with id of $request->id has been logged out",
             'tokens' => auth('sanctum')->user()->id
         ];
-
-
-
-
-
-
-
-
-        // $request->user()->currentAccessToken()->delete();
-
-        // return [
-        //     'message' => "User with id of $request->id has been logged out"
-        // ];
     }
 }
